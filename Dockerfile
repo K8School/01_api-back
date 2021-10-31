@@ -3,8 +3,8 @@ FROM python:3-slim-buster
 
 EXPOSE 8000/TCP
 
-# Keeps Python from generating .pyc files in the container
-ENV PYTHONDONTWRITEBYTECODE=1
+# Keep Python from generating .pyc files in the container
+ENV PYTHONDONTWRITEBYTECODE=0
 
 # Turns off buffering for easier container logging
 ENV PYTHONUNBUFFERED=1
