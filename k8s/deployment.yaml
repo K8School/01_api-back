@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-back
+spec:
+  selector:
+    matchLabels:
+      app: api-back
+  template:
+    metadata:
+      labels:
+        app: api-back
+    spec:
+      containers:
+      - name: api-back
+        image: <Image>
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8000
