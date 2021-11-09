@@ -13,10 +13,6 @@ spec:
     spec:
       containers:
       - name: api-back
-        image: <Image>
-        resources:
-          limits:
-            memory: "128Mi"
-            cpu: "500m"
+        image: rcregistry.azurecr.io/api-back:1
         ports:
         - containerPort: 8000

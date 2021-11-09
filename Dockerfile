@@ -1,5 +1,5 @@
 # For more information, please refer to https://aka.ms/vscode-docker-python
-FROM python:3-slim-buster
+FROM --platform=linux/amd64 python:3-slim-buster
 
 EXPOSE 8000/TCP
 
@@ -9,12 +9,21 @@ ENV PYTHONDONTWRITEBYTECODE=0
 # Turns off buffering for easier container logging
 ENV PYTHONUNBUFFERED=1
 
-# Install pip requirements
-COPY requirements.txt .
-RUN python -m pip install -r requirements.txt
+RUN apt-get clean \
+    && apt-get -y update
+
+RUN apt-get -y install \
+    python3-dev \
+    build-essential
+
+
 
 WORKDIR /app
 COPY . /app
+
+# Install pip requirements
+COPY requirements.txt .
+RUN pip install -r requirements.txt
 
 # Creates a non-root user with an explicit UID and adds permission to access the /app folder
 # For more info, please refer to https://aka.ms/vscode-docker-python-configure-containers
