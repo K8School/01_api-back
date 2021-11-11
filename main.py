@@ -22,7 +22,7 @@ def root():
     return {"message":"Hello World!"}
 
 @app.get("/hi/{name}")
-def hi(name: str):
+def hi(name:str):
     return {"message":f"Hello {name}!"}
 
 @app.get("/time", response_model=Date_Time)

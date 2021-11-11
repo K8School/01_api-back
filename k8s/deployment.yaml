@@ -16,6 +16,18 @@ spec:
     spec:
       containers:
       - name: api-back
-        image: rcregistry.azurecr.io/api-back:1
+        image: rcregistry.azurecr.io/api-back:2
+        imagePullPolicy: Always
+        resources:
+          limits:
+            memory: "64Mi"
+            cpu: "100m"
         ports:
         - containerPort: 8000
+        livenessProbe:
+          exec:
+            command:
+            - cat
+            - main.py
+          initialDelaySeconds: 5
+          periodSeconds: 5
